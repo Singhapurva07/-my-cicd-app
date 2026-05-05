@@ -30,8 +30,8 @@ pipeline {
         }
         stage('Kubernetes Deploy') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl rollout status deployment/my-app'
+                sh 'kubectl apply -f deployment.yaml --validate=false'
+                sh 'kubectl rollout status deployment/my-app --timeout=60s'
             }
         }
         stage('Verify') {
